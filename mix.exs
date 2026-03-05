@@ -15,8 +15,7 @@ defmodule Sentinel.MixProject do
       aliases: aliases(),
       test_coverage: [summary: [threshold: 80]],
       name: "Sentinel",
-      description:
-        "In-process autonomous dev agent for Elixir. Captures errors, creates tickets, picks up board work, and runs Codex to investigate and fix.",
+      description: "In-process autonomous dev agent for Elixir. Captures errors, creates tickets, picks up board work, and runs Codex to investigate and fix.",
       source_url: @source_url,
       homepage_url: @source_url,
       package: package(),
@@ -55,6 +54,7 @@ defmodule Sentinel.MixProject do
 
   defp package do
     [
+      name: "sentinel_ai",
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url},
       files: ~w(lib .formatter.exs mix.exs README.md LICENSE)
