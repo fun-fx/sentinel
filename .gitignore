@@ -7,3 +7,7 @@ erl_crash.dump
 *.ez
 sentinel-*.tar
 /tmp/
+example_app/priv/repo/*.db
+example_app/_build/
+example_app/deps/
+example_app/priv/static/assets/

@@ -1,0 +1,48 @@
+<div class="max-w-2xl mx-auto py-8">
+  <h1 class="text-3xl font-bold mb-6">Todos</h1>
+
+  <form action={~p"/todos"} method="post" class="flex gap-2 mb-8">
+    <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()} />
+    <input
+      type="text"
+      name="todo[title]"
+      placeholder="What needs to be done?"
+      class="flex-1 px-4 py-2 border rounded-lg"
+      required
+    />
+    <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+      Add
+    </button>
+  </form>
+
+  <ul class="space-y-2">
+    <%= for todo <- @todos do %>
+      <li class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+        <form action={~p"/todos/#{todo.id}/toggle"} method="post" class="flex items-center">
+          <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()} />
+          <button type="submit" class={"text-lg #{if todo.completed, do: "line-through text-gray-400", else: ""}"}>
+            <%= if todo.completed, do: "✓ ", else: "○ " %><%= todo.title %>
+          </button>
+        </form>
+        <form action={~p"/todos/#{todo.id}"} method="post" class="ml-auto">
+          <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()} />
+          <input type="hidden" name="_method" value="delete" />
+          <button type="submit" class="text-red-500 hover:text-red-700 text-sm">delete</button>
+        </form>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="mt-12 p-4 bg-gray-50 rounded-lg">
+    <h2 class="text-lg font-semibold mb-2">Sentinel Test Triggers</h2>
+    <p class="text-sm text-gray-600 mb-3">Click these to generate errors that Sentinel will capture:</p>
+    <div class="flex gap-2">
+      <a href={~p"/crash?type=argument"} class="px-3 py-1 bg-red-100 text-red-800 rounded text-sm hover:bg-red-200">ArgumentError</a>
+      <a href={~p"/crash?type=arithmetic"} class="px-3 py-1 bg-red-100 text-red-800 rounded text-sm hover:bg-red-200">ArithmeticError</a>
+      <a href={~p"/crash"} class="px-3 py-1 bg-red-100 text-red-800 rounded text-sm hover:bg-red-200">RuntimeError</a>
+    </div>
+    <p class="text-sm text-gray-500 mt-3">
+      View captured errors: <a href={~p"/sentinel/status"} class="text-blue-600 underline">/sentinel/status</a>
+    </p>
+  </div>
+</div>
