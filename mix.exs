@@ -1,7 +1,7 @@
 defmodule Sentinel.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @source_url "https://github.com/fun-fx/sentinel"
 
   def project do
@@ -15,7 +15,8 @@ defmodule Sentinel.MixProject do
       aliases: aliases(),
       test_coverage: [summary: [threshold: 80]],
       name: "Sentinel",
-      description: "In-process autonomous dev agent for Elixir. Captures errors, creates tickets, picks up board work, and runs Codex to investigate and fix.",
+      description:
+        "In-process autonomous dev agent for Elixir. Captures errors, creates tickets, picks up board work, and runs Codex to investigate and fix.",
       source_url: @source_url,
       homepage_url: @source_url,
       package: package(),
