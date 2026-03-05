@@ -42,6 +42,7 @@ defmodule Sentinel.MixProject do
       {:circular_buffer, "~> 0.4 or ~> 1.0"},
       {:req, "~> 0.5"},
       {:plug, "~> 1.15", optional: true},
+      {:phoenix_live_dashboard, "~> 0.8", optional: true},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false}

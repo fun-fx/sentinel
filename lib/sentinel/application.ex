@@ -26,6 +26,7 @@ defmodule Sentinel.Application do
   defp optional_children do
     tracker = if Sentinel.tracker_configured?(), do: [Sentinel.TrackerServer], else: []
     watcher = if Sentinel.board_watcher_enabled?(), do: [Sentinel.BoardWatcher], else: []
-    tracker ++ watcher
+    code_index = if Sentinel.environment() in [:dev, :staging], do: [Sentinel.CodeIndex], else: []
+    tracker ++ watcher ++ code_index
   end
 end
